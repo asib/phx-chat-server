@@ -17,9 +17,8 @@ defmodule LiveElistWeb.Router do
   scope "/", LiveElistWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    get "/room", RoomController, :list
-    get "/room/:room_id", RoomController, :detail
+    live "/", RoomControllerLive, :index
+    live "/room/:id", RoomControllerLive, :show
   end
 
   # Other scopes may use custom stacks.

@@ -3,3 +3,14 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+@layer components {
+    .input-text {
+        @apply border-0 bg-slate-200 w-auto;
+    }
+}
+
+@layer base {
+    [type='text']:focus {
+        @apply ring-0;
+    }
+}

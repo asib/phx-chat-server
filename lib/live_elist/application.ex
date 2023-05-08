@@ -17,9 +17,10 @@ defmodule LiveElist.Application do
       # Start Finch
       {Finch, name: LiveElist.Finch},
       # Start the Endpoint (http/https)
-      LiveElistWeb.Endpoint
+      LiveElistWeb.Endpoint,
       # Start a worker by calling: LiveElist.Worker.start_link(arg)
       # {LiveElist.Worker, arg}
+      LiveElist.ChatServer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
