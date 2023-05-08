@@ -37,7 +37,7 @@ defmodule LiveElistWeb.RoomControllerLive do
         %{event: "new_room", topic: @topic, payload: room},
         socket
       ) do
-    {:noreply, socket |> assign(rooms: List.insert_at(socket.assigns.rooms, 0, room))}
+    {:noreply, socket |> assign(rooms: List.insert_at(socket.assigns.rooms, -1, room))}
   end
 
   def handle_info(%{event: "new_message", topic: topic, payload: message}, socket) do
@@ -51,6 +51,7 @@ defmodule LiveElistWeb.RoomControllerLive do
   end
 
   def handle_event("new_room", %{"room_name" => room_name}, socket) do
+    room_name = Slug.slugify(room_name)
     room = ChatServer.create_room(room_name)
 
     LiveElistWeb.Endpoint.broadcast(@topic, "new_room", room)

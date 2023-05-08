@@ -6,7 +6,8 @@
       <div>
         <div :for={room <- @rooms} class="flex transition ease-linear hover:-translate-y-0.5 hover:translate-x-0.5">
           <div class="mr-2">#</div>
-          <.link id={"room-link-#{room.id}"} class="block hover:underline" navigate={~p"/room/#{room.id}"}>
+          <.link id={"room-link-#{room.id}"} class={"block hover:underline #{if assigns[:room_id] !=nil and
+            @room_id==room.id do 'font-bold' end}"} navigate={~p"/room/#{room.id}"}>
             <%= room.name %>
           </.link>
         </div>
